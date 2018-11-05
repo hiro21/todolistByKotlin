@@ -13,7 +13,5 @@ fun main (args : Array<String>) {
         )
         objectMapper.writeValueAsString(tasks)
 
-    }, {model ->
-        objectMapper.writeValueAsString(model)
-    })
+    }, objectMapper::writeValueAsString)
 }
