@@ -6,12 +6,14 @@ import spark.Spark.get
 
 fun main (args : Array<String>) {
     val objectMapper = ObjectMapper().registerKotlinModule()
-    get("/tasks") { req, res ->
+    get("/tasks",  { req, res ->
         val tasks = listOf(
                 Task(1, "test1", false),
                 Task(2, "test2", true)
         )
         objectMapper.writeValueAsString(tasks)
 
-    }
+    }, {model ->
+        objectMapper.writeValueAsString(model)
+    })
 }
