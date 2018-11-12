@@ -13,11 +13,7 @@ class TaskController(private val objectMapper: ObjectMapper,
 
     fun create(): Route = Route { req, res ->
         val request: TaskCreateRequest =
-            try {
-                objectMapper.readValue(req.bodyAsBytes(), TaskCreateRequest::class.java)
-            } catch (e: Exception) {
-                throw halt(400)
-            }
+            objectMapper.readValue(req.bodyAsBytes()) ?:throw halt(400)
         val task = taskRepository.create(request.content)
         res.status(201)
         task
