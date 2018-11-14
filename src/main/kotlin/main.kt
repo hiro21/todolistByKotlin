@@ -13,4 +13,6 @@ fun main (args : Array<String>) {
 
     get("tasks", taskController.index(), jsonTransformer)
     post("tasks", taskController.create(), jsonTransformer)
+
+    get("/tasks/:id", taskController.show(), jsonTransformer)
 }

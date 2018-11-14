@@ -19,4 +19,10 @@ class TaskController(private val objectMapper: ObjectMapper,
         task
     }
 
+    fun show(): Route = Route { req, res ->
+        val id = req.params("id").toLongOrNull()
+        id?.let(taskRepository::findById) ?: throw halt(404)
+
+    }
+
 }
